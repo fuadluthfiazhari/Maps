@@ -100,6 +100,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        val latitude =-7.747033
+        val longitude =  110.355398
+        val zoomLevel =15f
+        val overlaySize = 100f
+
+        val homeLatLng = LatLng(latitude,longitude)
+        mMap.addMarker(MarkerOptions().position(homeLatLng).title("Universitas Teknologi Yogjakarta").snippet("-7.747033/110.355398"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng,zoomLevel))
+
+
+        val googleOverlay= GroundOverlayOptions()
+            .image(BitmapDescriptorFactory.fromResource(R.drawable.uty)).position(homeLatLng,overlaySize)
+        mMap.addGroundOverlay(googleOverlay)
+
+
         verifyPermission()
     }
 }
